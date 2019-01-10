@@ -7,32 +7,32 @@
     tools:context=".SQLView"
     android:orientation="vertical">
 
-    <TableLayout
-        android:id="@+id/tableLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+    <!--<TableLayout-->
+        <!--android:id="@+id/tableLayout1"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-        <TableRow>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:layout_gravity="right"
-                android:text="Student Name"></TextView>
+        <!--<TableRow>-->
+            <!--<TextView-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_gravity="right"-->
+                <!--android:text="Student Name"></TextView>-->
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:layout_gravity="right"
-                android:text="Academic Program"></TextView>
-        </TableRow>
-    </TableLayout>
+            <!--<TextView-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_gravity="right"-->
+                <!--android:text="Academic Program"></TextView>-->
+        <!--</TableRow>-->
+    <!--</TableLayout>-->
 
     <TextView
         android:id="@+id/tvSQLinfo"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:text="get info from db"/>
+        android:text="ID \t Name \t Program \t Section \t Age \n"/>
 
 </LinearLayout>

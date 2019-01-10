@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class SQLiteExample extends AppCompatActivity implements OnClickListener {
     Button btnUpdate, btnView, btnGetInfo, btnEdit, btnDelete;
-    EditText txtName, txtProgram, txtRowId;
+    EditText txtName, txtProgram, txtRowId, txtSection, txtAge;
 
 
     @Override
@@ -22,6 +22,8 @@ public class SQLiteExample extends AppCompatActivity implements OnClickListener 
         setContentView(R.layout.activity_sqlite_example);
         txtName = (EditText)findViewById(R.id.txtName);
         txtProgram = (EditText)findViewById(R.id.txtProgram);
+        txtSection = (EditText)findViewById(R.id.txtSection);
+        txtAge = (EditText)findViewById(R.id.txtAge);
         btnUpdate = (Button)findViewById(R.id.btnUpdate);
         btnView = (Button)findViewById(R.id.btnView);
         btnUpdate.setOnClickListener(this);
@@ -46,9 +48,11 @@ public class SQLiteExample extends AppCompatActivity implements OnClickListener 
                     try {
                         String name = txtName.getText().toString();
                         String program = txtProgram.getText().toString();
+                        String section = txtSection.getText().toString();
+                        int age = Integer.parseInt(txtAge.getText().toString());
                         StudentInfo entry = new StudentInfo(SQLiteExample.this);
                         entry.open();
-                        entry.createEntry(name, program);
+                        entry.createEntry(name, program, section, age);
                         entry.close();
                     } catch (Exception e) {
                         worked = false;
@@ -58,6 +62,8 @@ public class SQLiteExample extends AppCompatActivity implements OnClickListener 
                         if(worked){
                             txtName.setText("");
                             txtProgram.setText("");
+                            txtSection.setText("");
+                            txtAge.setText("");
                             Dialog d = new Dialog(this);
                             d.setTitle("Record has been Updated!.");
                             TextView tv = new TextView(this);
@@ -83,9 +89,13 @@ public class SQLiteExample extends AppCompatActivity implements OnClickListener 
                         si.open();
                         String returnedName = si.getName(l);
                         String returnedProgram = si.getProgram(l);
+                        String returnedSection = si.getSection(l);
+                        String returnedAge = si.getAge(l);
                         si.close();
                         txtName.setText(returnedName);
                         txtProgram.setText(returnedProgram);
+                        txtSection.setText(returnedSection);
+                        txtAge.setText(returnedAge);
                     } catch (Exception e){
                         worked = false;
                         String error = e.toString();
@@ -103,16 +113,18 @@ public class SQLiteExample extends AppCompatActivity implements OnClickListener 
                 break;
             case R.id.btnEdit:
                 worked = true;
-                if(txtRowId.getText().length()>0 && txtName.getText().length()>0 && txtProgram.getText().length()>0){
+                if(txtRowId.getText().length()>0 && txtName.getText().length()>0 && txtProgram.getText().length()>0 && txtSection.getText().length()>0 && txtAge.getText().length()>0){
                     try{
                         String sname = txtName.getText().toString();
                         String sprogram = txtProgram.getText().toString();
+                        String section = txtSection.getText().toString();
+                        int age = Integer.parseInt(txtAge.getText().toString());
                         String srow = txtRowId.getText().toString();
                         Long lrow = Long.parseLong(srow);
 
                         StudentInfo ed = new StudentInfo(this);
                         ed.open();
-                        ed.updateEntry(lrow, sname, sprogram);
+                        ed.updateEntry(lrow, sname, sprogram, section, age);
                         ed.close();
                     } catch (Exception e){
                         worked = false;
@@ -130,6 +142,8 @@ public class SQLiteExample extends AppCompatActivity implements OnClickListener 
                             btnEdit.setEnabled(false);
                             txtName.setText("");
                             txtProgram.setText("");
+                            txtSection.setText("");
+                            txtAge.setText("");
                         }
                     }
                 }else{
@@ -162,6 +176,8 @@ public class SQLiteExample extends AppCompatActivity implements OnClickListener 
                             txtRowId.setText("");
                             txtProgram.setText("");
                             txtName.setText("");
+                            txtSection.setText("");
+                            txtAge.setText("");
                             btnEdit.setEnabled(false);
                             btnDelete.setEnabled(false);
                         }

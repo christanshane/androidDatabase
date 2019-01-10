@@ -15,6 +15,7 @@ public class SQLView extends AppCompatActivity {
         info.open();
         String data = info.getData();
         info.close();
-        tv.setText(data);
+        tv.append(data);
+//        tv.setText(data);
     }
 }
